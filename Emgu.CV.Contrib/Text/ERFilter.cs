@@ -169,7 +169,7 @@ namespace Emgu.CV.Text
       /// </summary>
       /// <param name="image">Sinle channel image CV_8UC1</param>
       /// <param name="regions">Output for the 1st stage and Input/Output for the 2nd. The selected Extremal Regions are stored here.</param>
-      public void Run(IInputArray image, VectorOfERStat regions)
+      public void Run(IInputArray image, IntPtr regions)
       {
          using (InputArray iaImage = image.GetInputArray())
             ContribInvoke.CvERFilterRun(_ptr, iaImage, regions);
@@ -200,13 +200,13 @@ namespace Emgu.CV.Text
       /// <param name="minProbability">The minimum probability for accepting a group.</param>
       /// <param name="groupMethods">The grouping methods</param>
       /// <returns>The output of the algorithm that indicates the text regions</returns>
-      public static System.Drawing.Rectangle[] ERGrouping(IInputArray image, IInputArrayOfArrays channels, VectorOfERStat[] erstats, GroupingMethod groupMethods = GroupingMethod.OrientationHoriz, String groupingTrainedFileName = null, float minProbability = 0.5f)
+      public static System.Drawing.Rectangle[] ERGrouping(IInputArray image, IInputArrayOfArrays channels, IntPtr[] erstats, GroupingMethod groupMethods = GroupingMethod.OrientationHoriz, String groupingTrainedFileName = null, float minProbability = 0.5f)
       {
          IntPtr[] erstatPtrs = new IntPtr[erstats.Length];
 
          for (int i = 0; i < erstatPtrs.Length; i++)
          {
-            erstatPtrs[i] = erstats[i].Ptr;
+            erstatPtrs[i] = erstats[i];
          }
 
          using (VectorOfVectorOfPoint regionGroups = new VectorOfVectorOfPoint())
