@@ -3,7 +3,7 @@
 	url = git://git.code.sf.net/p/emgucv/cvblob
 [submodule "opencv"]
 	path = opencv
-	url = git://git.code.sf.net/p/emgucv/opencv
+	url = https://github.com/splitice/opencv.git
 	ignore = dirty
 [submodule "opencv_contrib"]
 	path = opencv_contrib
